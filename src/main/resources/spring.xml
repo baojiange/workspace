@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+	<!--引入配置属性文件 -->
+	<context:property-placeholder location="classpath:config.properties" />
+
+	<!--
+		1 .自动扫描含有@Service将其注入为bean,如果@Service是在一个包内，
+		那么就通过这种方式，但是，每个功能 都在一个包内，这样的话，就得扫描全包，
+	  	这样这种方式就不适用了
+	 -->
+	<!-- <context:component-scan base-package="com.core.web.ssm.service" /> -->
+	
+	<!--   
+		2 .第二种就是扫描全包，但是，我们只获取有注解@Service的类,这样就满足了扫描全包
+	 -->
+	<context:component-scan base-package="com.core.web.ssm" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+	</context:component-scan>
+	
+	
+	<!--    引入其他配置文件   -->
+	<import resource="spring-mybatis.xml"/>
+	<import resource="quartz.xml"/>
+	
+	
+</beans>

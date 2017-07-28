@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.web.ssm.dao.BatchtaskListMapper" >
+  <resultMap id="BaseResultMap" type="com.core.web.ssm.bean.BatchtaskList" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="run_batch_date" property="runBatchDate" jdbcType="VARCHAR" />
+    <result column="run_job_Id" property="runJobId" jdbcType="VARCHAR" />
+    <result column="run_start_mode" property="runStartMode" jdbcType="VARCHAR" />
+    <result column="run_status" property="runStatus" jdbcType="VARCHAR" />
+    <result column="run_begin_date" property="runBeginDate" jdbcType="TIMESTAMP" />
+    <result column="run_end_date" property="runEndDate" jdbcType="TIMESTAMP" />
+    <result column="run_desc" property="runDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, run_batch_date, run_job_Id, run_start_mode, run_status, run_begin_date, run_end_date, 
+    run_desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from quartz_batchtask_list
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from quartz_batchtask_list
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.core.web.ssm.bean.BatchtaskList" >
+    insert into quartz_batchtask_list (id, run_batch_date, run_job_Id, 
+      run_start_mode, run_status, run_begin_date, 
+      run_end_date, run_desc)
+    values (#{id,jdbcType=BIGINT}, #{runBatchDate,jdbcType=VARCHAR}, #{runJobId,jdbcType=VARCHAR}, 
+      #{runStartMode,jdbcType=VARCHAR}, #{runStatus,jdbcType=VARCHAR}, #{runBeginDate,jdbcType=TIMESTAMP}, 
+      #{runEndDate,jdbcType=TIMESTAMP}, #{runDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.web.ssm.bean.BatchtaskList" >
+    insert into quartz_batchtask_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="runBatchDate != null" >
+        run_batch_date,
+      </if>
+      <if test="runJobId != null" >
+        run_job_Id,
+      </if>
+      <if test="runStartMode != null" >
+        run_start_mode,
+      </if>
+      <if test="runStatus != null" >
+        run_status,
+      </if>
+      <if test="runBeginDate != null" >
+        run_begin_date,
+      </if>
+      <if test="runEndDate != null" >
+        run_end_date,
+      </if>
+      <if test="runDesc != null" >
+        run_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="runBatchDate != null" >
+        #{runBatchDate,jdbcType=VARCHAR},
+      </if>
+      <if test="runJobId != null" >
+        #{runJobId,jdbcType=VARCHAR},
+      </if>
+      <if test="runStartMode != null" >
+        #{runStartMode,jdbcType=VARCHAR},
+      </if>
+      <if test="runStatus != null" >
+        #{runStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="runBeginDate != null" >
+        #{runBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="runEndDate != null" >
+        #{runEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="runDesc != null" >
+        #{runDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.web.ssm.bean.BatchtaskList" >
+    update quartz_batchtask_list
+    <set >
+      <if test="runBatchDate != null" >
+        run_batch_date = #{runBatchDate,jdbcType=VARCHAR},
+      </if>
+      <if test="runJobId != null" >
+        run_job_Id = #{runJobId,jdbcType=VARCHAR},
+      </if>
+      <if test="runStartMode != null" >
+        run_start_mode = #{runStartMode,jdbcType=VARCHAR},
+      </if>
+      <if test="runStatus != null" >
+        run_status = #{runStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="runBeginDate != null" >
+        run_begin_date = #{runBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="runEndDate != null" >
+        run_end_date = #{runEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="runDesc != null" >
+        run_desc = #{runDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.web.ssm.bean.BatchtaskList" >
+    update quartz_batchtask_list
+    set run_batch_date = #{runBatchDate,jdbcType=VARCHAR},
+      run_job_Id = #{runJobId,jdbcType=VARCHAR},
+      run_start_mode = #{runStartMode,jdbcType=VARCHAR},
+      run_status = #{runStatus,jdbcType=VARCHAR},
+      run_begin_date = #{runBeginDate,jdbcType=TIMESTAMP},
+      run_end_date = #{runEndDate,jdbcType=TIMESTAMP},
+      run_desc = #{runDesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.web.ssm.dao.BatchtaskDefineMapper" >
+  <resultMap id="BaseResultMap" type="com.core.web.ssm.bean.BatchtaskDefine" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="task_id" property="taskId" jdbcType="VARCHAR" />
+    <result column="task_name" property="taskName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="task_serv" property="taskServ" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="cron_expression" property="cronExpression" jdbcType="VARCHAR" />
+    <result column="task_group" property="taskGroup" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, task_id, task_name, status, task_serv, create_date, update_date,cron_expression,task_group
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from quartz_batchtask_define
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from quartz_batchtask_define
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.core.web.ssm.bean.BatchtaskDefine" >
+    insert into quartz_batchtask_define (id, task_id, task_name, 
+      status, task_serv, create_date, 
+      update_date,cron_expression,task_group)
+    values (#{id,jdbcType=BIGINT}, #{taskId,jdbcType=VARCHAR}, #{taskName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{taskServ,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP},#{cronExpression,jdbcType=VARCHAR},#{taskGroup,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.web.ssm.bean.BatchtaskDefine" >
+    insert into quartz_batchtask_define
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="taskName != null" >
+        task_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="taskServ != null" >
+        task_serv,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="taskId != null" >
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null" >
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="taskServ != null" >
+        #{taskServ,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.web.ssm.bean.BatchtaskDefine" >
+    update quartz_batchtask_define
+    <set >
+      <if test="taskId != null" >
+        task_id = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null" >
+        task_name = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="taskServ != null" >
+        task_serv = #{taskServ,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cronExpression != null" >
+        cron_expression = #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="taskGroup != null" >
+        task_group = #{taskGroup,jdbcType=VARCHAR},
+      </if> 
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.web.ssm.bean.BatchtaskDefine" >
+    update quartz_batchtask_define
+    set task_id = #{taskId,jdbcType=VARCHAR},
+      task_name = #{taskName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      task_serv = #{taskServ,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!--   获取任务列表   -->
+  <select id="getTaskList" resultMap="BaseResultMap">
+  	select * from quartz_batchtask_define
+  </select>
+  
+  
+</mapper>
